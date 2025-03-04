@@ -1,0 +1,390 @@
+Console.WriteLine("Hello World!");
+//Creaciones de listas
+var Lista_miembros = new List<Miembros>();
+var Lista_empleados = new List<Empleados>();
+var Lista_envios = new List<Envios>();
+var Lista_reservas = new List<Reservas>();
+var Lista_peliculas = new List<Peliculas>();
+var Lista_proveedores = new List<Proveedores>();
+var lista_snacks = new List<Snacks>();
+var lista_consolas = new List<Consolas>();
+var lista_bodegas = new List<Bodegas>();
+
+//Llenado de datos Miembros
+Lista_miembros.Add(new Miembros()
+{
+    Id_miembros = 111,
+    Fecha_registro = DateTime.Now,
+    //Explicando el nivel y los puntos, cada mil puntos el usuario sube de nivel, hay 3 niveles bronce, plata y oro
+    Nivel = "Bronce",
+    Puntos = 700
+});
+Lista_miembros.Add(new Miembros()
+{
+    Id_miembros = 222,
+    Fecha_registro = DateTime.Now,
+    Nivel = "Oro",
+    Puntos = 3200
+});
+Lista_miembros.Add(new Miembros()
+{
+    Id_miembros = 333,
+    Fecha_registro = DateTime.Now,
+    Nivel = "Plata",
+    Puntos = 2457
+});
+
+
+//Llenado de datos Empleados
+Lista_empleados.Add(new Empleados()
+{
+    Id_empleados = 111,
+    Cargo_empleado = "Cajero",
+    Fecha_contratacion = DateTime.Now,
+    Nombre_empleado = "Juan",
+    sueldo = 1253145
+});
+Lista_empleados.Add(new Empleados()
+{
+    Id_empleados = 222,
+    Cargo_empleado = "Aseo y general",
+    Fecha_contratacion = DateTime.Now,
+    Nombre_empleado = "Camila",
+    sueldo = 1400000
+});
+Lista_empleados.Add(new Empleados()
+{
+    Id_empleados = 333,
+    Cargo_empleado = "Administrador",
+    Fecha_contratacion = DateTime.Now,
+    Nombre_empleado = "Daniel",
+    sueldo = 2400000
+});
+
+
+//Llenado de datos envios
+Lista_envios.Add(new Envios()
+{
+    Id_envios = 111,
+    Fecha_envios = DateTime.Now,
+    Metodo_Envio = "Servientrega",
+    _Reserva = Lista_reservas.FirstOrDefault(x => x.Id_reserva == 111) ,
+    _Empleado = Lista_empleados.FirstOrDefault(x => x.Id_empleados == 111)
+});
+Lista_envios.Add(new Envios()
+{
+    Id_envios = 222,
+    Fecha_envios = DateTime.Now,
+    Metodo_Envio = "Interrapidisimo",
+    _Reserva = Lista_reservas.FirstOrDefault(x => x.Id_reserva == 222) ,
+    _Empleado = Lista_empleados.FirstOrDefault(x => x.Id_empleados == 222)
+});
+Lista_envios.Add(new Envios()
+{
+    Id_envios = 333,
+    Fecha_envios = DateTime.Now,
+    Metodo_Envio = "Fedex",
+    _Reserva = Lista_reservas.FirstOrDefault(x => x.Id_reserva == 333) ,
+    _Empleado = Lista_empleados.FirstOrDefault(x => x.Id_empleados == 333)
+});
+
+
+//Llenado de datos Reservas
+Lista_reservas.Add(new Reservas()
+{
+    Id_reserva = 111,
+    Fecha_reserva = DateTime.Now.AddDays(-1),
+    Estado_reserva = "Completada",
+    _Miembro = Lista_miembros.FirstOrDefault(x => x.Id_miembros == 111),
+    _Pelicula = Lista_peliculas.FirstOrDefault(x => x.Id_pelicula == 111),
+    _Snack = lista_snacks.FirstOrDefault(x => x.Id_snack == 111),
+    _Consola = lista_consolas.FirstOrDefault(x => x.Id_consola == 111)
+});
+Lista_reservas.Add(new Reservas()
+{
+    Id_reserva = 222,
+    Fecha_reserva = DateTime.Now.AddDays(+2),
+    Estado_reserva = "Activa",
+    _Miembro = Lista_miembros.FirstOrDefault(x => x.Id_miembros == 222),
+    _Pelicula = Lista_peliculas.FirstOrDefault(x => x.Id_pelicula == 222),
+    _Snack = lista_snacks.FirstOrDefault(x => x.Id_snack == 222),
+    _Consola = lista_consolas.FirstOrDefault(x => x.Id_consola == 222)
+});
+Lista_reservas.Add(new Reservas()
+{
+    Id_reserva = 333,
+    Fecha_reserva = DateTime.Now.AddDays(+1),
+    Estado_reserva = "Pendiente",
+    _Miembro = Lista_miembros.FirstOrDefault(x => x.Id_miembros == 333),
+    _Pelicula = Lista_peliculas.FirstOrDefault(x => x.Id_pelicula == 333),
+    _Snack = lista_snacks.FirstOrDefault(x => x.Id_snack == 333),
+    _Consola = lista_consolas.FirstOrDefault(x => x.Id_consola == 333)
+});
+Lista_reservas.Add(new Reservas()
+{
+    Id_reserva = 444,
+    Fecha_reserva = DateTime.Now.AddDays(-2),
+    Estado_reserva = "Activa",
+    _Miembro = Lista_miembros.FirstOrDefault(x => x.Id_miembros == 111),
+    _Pelicula = Lista_peliculas.FirstOrDefault(x => x.Id_pelicula == 333),
+    _Snack = lista_snacks.FirstOrDefault(x => x.Id_snack == 222),
+    _Consola = lista_consolas.FirstOrDefault(x => x.Id_consola == 333)
+});
+
+
+//LLenado de datos Peliculas
+Lista_peliculas.Add(new Peliculas()
+{
+    Id_pelicula = 111,
+    Nombre_pelicula = "El niño y la garza",
+    Estado_pelicula = true,
+    Fecha_Estreno = DateTime.Now.AddYears(-2),
+    Genero_Pelicula = "Animada",
+    _Bodega = lista_bodegas.FirstOrDefault(x => x.Id_bodega == 111),
+    _Proveedor = Lista_proveedores.FirstOrDefault(x => x.Id_proveedor == 111),
+});
+Lista_peliculas.Add(new Peliculas()
+{
+    Id_pelicula = 222,
+    Nombre_pelicula = "Deadpool y Wolverine",
+    Estado_pelicula = true,
+    Fecha_Estreno = DateTime.Now.AddYears(-1),
+    Genero_Pelicula = "Live action",
+    _Bodega = lista_bodegas.FirstOrDefault(x => x.Id_bodega == 111),
+    _Proveedor = Lista_proveedores.FirstOrDefault(x => x.Id_proveedor == 222),
+});
+Lista_peliculas.Add(new Peliculas()
+{
+    Id_pelicula = 333,
+    Nombre_pelicula = "Flow",
+    Estado_pelicula = false,
+    Fecha_Estreno = DateTime.Now.AddDays(-100),
+    Genero_Pelicula = "Animada",
+    _Bodega = lista_bodegas.FirstOrDefault(x => x.Id_bodega == 111),
+    _Proveedor = Lista_proveedores.FirstOrDefault(x => x.Id_proveedor == 111),
+});
+
+
+/*foreach (var elementos in Lista_peliculas)
+{
+    Console.WriteLine(elementos.Nombre_pelicula);
+    Console.WriteLine(elementos._Proveedor.Nombre_proveedor);
+}*/
+//LLenado de proveedores
+Lista_proveedores.Add(new Proveedores()
+{
+    Id_proveedor = 111,
+    Nombre_proveedor = "Estudio Ghibli",
+    Telefono_proveedor = "3148621357",
+    Direccion_Proveedor = "Calle 13",
+    Productosuministrado = "Peliculas Animadas orientales"
+});
+Lista_proveedores.Add(new Proveedores()
+{
+    Id_proveedor = 222,
+    Nombre_proveedor = "MARVEL STUDIOS",
+    Telefono_proveedor = "3224785515",
+    Direccion_Proveedor = "Calle 5 Cra 23a",
+    Productosuministrado = "Peliculas Live Action Franquicia MARVEL"
+});
+Lista_proveedores.Add(new Proveedores()
+{
+    Id_proveedor = 333,
+    Nombre_proveedor = "Generic Name",
+    Telefono_proveedor = "3157894512",
+    Direccion_Proveedor = "Calle 5 Cra 23a",
+    Productosuministrado = "Peliculas animidas occidentales"
+});
+
+
+
+lista_snacks.Add(new Snacks()
+{
+    Id_snack = 111,
+    Nombre_snack = "Snickers",
+    Precio_snack = 2500,
+    Cantidad_snack = 10,
+    _Proveedor = Lista_proveedores.FirstOrDefault(x => x.Id_proveedor == 111),
+    _Bodega = lista_bodegas.FirstOrDefault(x => x.Id_bodega == 111)
+});
+
+lista_snacks.Add(new Snacks()
+{
+    Id_snack = 222,
+    Nombre_snack = "Chocolatinas",
+    Precio_snack = 1000,
+    Cantidad_snack = 5,
+    _Proveedor = Lista_proveedores.FirstOrDefault(x => x.Id_proveedor == 222),
+    _Bodega = lista_bodegas.FirstOrDefault(x => x.Id_bodega == 111)
+});
+
+lista_snacks.Add(new Snacks()
+{
+    Id_snack = 333,
+    Nombre_snack = "Fanta",
+    Precio_snack = 1700,
+    Cantidad_snack = 7,
+    _Proveedor = Lista_proveedores.FirstOrDefault(x => x.Id_proveedor == 333),
+    _Bodega = lista_bodegas.FirstOrDefault(x => x.Id_bodega == 222)
+});
+//LLenado de consolas
+lista_consolas.Add(new Consolas()
+{
+    Id_consola = 111,
+    Tipo_consola = "Play Station 4",
+    Marca_consola = "Sony",
+    //Una consola puede tener 3 estados 1. Disponible, 2. Ocupada, 3. En reparacion
+    Estado_consola = 1 ,
+    _Bodega = lista_bodegas.FirstOrDefault(x => x.Id_bodega == 222),
+    _Proveedor = Lista_proveedores.FirstOrDefault(x => x.Id_proveedor == 111)
+});
+lista_consolas.Add(new Consolas()
+{
+    Id_consola = 222,
+    Tipo_consola = "GAMEBOY",
+    Marca_consola = "Nintendo",
+    //Una consola puede tener 3 estados 1. Disponible, 2. Ocupada, 3. En reparacion
+    Estado_consola = 2 ,
+    _Bodega = lista_bodegas.FirstOrDefault(x => x.Id_bodega == 222),
+    _Proveedor = Lista_proveedores.FirstOrDefault(x => x.Id_proveedor == 333)
+});
+lista_consolas.Add(new Consolas()
+{
+    Id_consola = 333,
+    Tipo_consola = "Genesis",
+    Marca_consola = "Sega",
+    //Una consola puede tener 3 estados 1. Disponible, 2. Ocupada, 3. En reparacion
+    Estado_consola = 3 ,
+    _Bodega = lista_bodegas.FirstOrDefault(x => x.Id_bodega == 111),
+    _Proveedor = Lista_proveedores.FirstOrDefault(x => x.Id_proveedor == 333)
+});
+//Llenado de Bodegas
+lista_bodegas.Add(new Bodegas()
+{
+    Id_bodega = 111,
+    //La capacidad se mide en metros cuadrados
+    Capacidad_bodega = 100,
+    Ubicacion_bodega = "Calle 12a Medellin, Antioquia, Colombia"
+});
+
+lista_bodegas.Add(new Bodegas()
+{
+    Id_bodega = 222,
+    //La capacidad se mide en metros cuadrados
+    Capacidad_bodega = 300,
+    Ubicacion_bodega = "Caucasia, Antioquia, Colombia"
+});
+//Mostrar en consola a ver si funciona
+foreach (var elemento in Lista_miembros)
+    Console.WriteLine("El ID del miembro es: "+elemento.Id_miembros);
+
+foreach (var elemento in Lista_empleados)
+    Console.WriteLine("El nombre del empleado es: "+elemento.Nombre_empleado);
+
+foreach (var elemento in Lista_envios)
+    Console.WriteLine("El envio: "+elemento.Id_envios + " Es gestionado por" + elemento._Empleado.Nombre_empleado);
+
+foreach (var elementos in Lista_reservas)
+    Console.WriteLine("La reserva: "+elementos.Id_reserva + " Contiene los snacks: "+ elementos._Snack.Nombre_snack);
+
+foreach (var elementos in Lista_peliculas)
+    Console.WriteLine("La pelicula: "+elementos.Nombre_pelicula+" Es del genero: "+elementos.Nombre_pelicula);
+
+foreach (var elementos in Lista_proveedores)
+    Console.WriteLine("El proveedor consultado es: "+elementos.Nombre_proveedor);
+
+foreach (var elementos in lista_snacks)
+    Console.WriteLine("El snack: "+elementos.Nombre_snack+" Es provisto por: "+elementos._Proveedor.Nombre_proveedor);
+
+foreach (var elementos in lista_consolas)
+    Console.WriteLine("La consola de nombre: "+elementos.Marca_consola+" Se almacena en la bodega de:"+elementos._Bodega.Ubicacion_bodega);
+
+foreach (var elementos in lista_bodegas)
+    Console.WriteLine(elementos.Ubicacion_bodega);
+
+
+public class Miembros
+{
+    public int Id_miembros { get; set; }
+    public DateTime Fecha_registro { get; set; }
+    public string? Nivel { get; set; }
+    public int Puntos { get; set; }
+}
+
+public class Empleados
+{
+    public int Id_empleados { get; set; }
+    public string? Nombre_empleado { get; set; }
+    public string? Cargo_empleado { get; set; }
+    public double sueldo { get; set; }
+    public DateTime Fecha_contratacion { get; set; }
+}
+
+public class Envios
+{
+    public int Id_envios { get; set; }  
+    public DateTime Fecha_envios { get; set; }
+    public string? Metodo_Envio { get; set; }
+    public Reservas? _Reserva { get; set; }
+    public Empleados? _Empleado { get; set; }
+}
+
+public class Reservas
+{
+    public int Id_reserva { get; set; }
+    public DateTime Fecha_reserva { get; set; }
+    public string? Estado_reserva { get; set; }
+    public Miembros? _Miembro { get; set; }
+    public Peliculas? _Pelicula { get; set; }
+    public Snacks? _Snack { get; set; }
+    public Consolas? _Consola { get; set; }
+}
+
+public class Peliculas
+{
+    public int Id_pelicula { get; set; }
+    public string? Nombre_pelicula { get; set; }
+    public string? Genero_Pelicula { get; set; }
+    public DateTime Fecha_Estreno { get; set; }
+    public bool Estado_pelicula { get; set; }
+    public Bodegas? _Bodega { get; set; }
+    public Proveedores? _Proveedor { get; set; }
+
+}
+
+public class Proveedores
+{
+    public int Id_proveedor { get; set; }
+    public string? Nombre_proveedor { get; set; }
+    public string? Telefono_proveedor { get; set; }
+    public string? Direccion_Proveedor { get; set; }
+    public string? Productosuministrado { get; set; }
+}
+
+public class Snacks
+{
+    public int Id_snack { get; set; }
+    public string? Nombre_snack { get; set; }
+    public double Precio_snack { get; set; }
+    public int Cantidad_snack { get; set; }
+    public Proveedores? _Proveedor { get; set; }
+    public Bodegas? _Bodega { get; set; }
+    
+}
+
+public class Consolas
+{
+    public int Id_consola { get; set; }
+    public string? Tipo_consola { get; set; }
+    public string? Marca_consola { get; set; }
+    public int Estado_consola { get; set; }
+    public Bodegas? _Bodega { get; set; }
+    public Proveedores? _Proveedor { get; set; }
+}
+
+public class Bodegas
+{
+        public int Id_bodega { get; set; }
+        public string? Ubicacion_bodega { get; set; }
+        public double Capacidad_bodega { get; set; }
+}
