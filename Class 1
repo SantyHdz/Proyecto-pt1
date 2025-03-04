@@ -160,7 +160,7 @@ Lista_peliculas.Add(new Peliculas()
     Estado_pelicula = false,
     Fecha_Estreno = DateTime.Now.AddDays(-100),
     Genero_Pelicula = "Animada",
-    _Bodega = lista_bodegas.FirstOrDefault(x => x.Id_bodega == 111),
+    _Bodega = lista_bodegas.FirstOrDefault(x => x.Id_bodega == 222),
     _Proveedor = Lista_proveedores.FirstOrDefault(x => x.Id_proveedor == 111),
 });
 
@@ -282,10 +282,20 @@ foreach (var elemento in Lista_empleados)
     Console.WriteLine("El nombre del empleado es: "+elemento.Nombre_empleado);
 
 foreach (var elemento in Lista_envios)
-    Console.WriteLine("El envio: "+elemento.Id_envios + " Es gestionado por" + elemento._Empleado.Nombre_empleado);
+{
+    if (elemento != null)
+        Console.WriteLine("El envio: "+elemento.Id_envios + " Es gestionado por " + elemento._Empleado.Nombre_empleado);
+    else
+        Console.WriteLine("El empleado es nulo");
+}
 
 foreach (var elementos in Lista_reservas)
-    Console.WriteLine("La reserva: "+elementos.Id_reserva + " Contiene los snacks: "+ elementos._Snack.Nombre_snack);
+{
+    if (elementos != null)
+        Console.WriteLine("La reserva: "+ elementos.Id_reserva + " Contiene los snacks: "+ elementos._Snack.Nombre_snack);
+    else
+        Console.WriteLine("La reserva es nula");
+}
 
 foreach (var elementos in Lista_peliculas)
     Console.WriteLine("La pelicula: "+elementos.Nombre_pelicula+" Es del genero: "+elementos.Nombre_pelicula);
